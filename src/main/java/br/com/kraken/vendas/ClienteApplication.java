@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @SpringBootApplication
-public class VendasApplication {
+public class ClienteApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(VendasApplication.class, args);
+		SpringApplication.run(ClienteApplication.class, args);
 	}
 
 	@GetMapping ("/")
