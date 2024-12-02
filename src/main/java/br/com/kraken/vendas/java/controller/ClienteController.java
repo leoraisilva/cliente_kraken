@@ -55,7 +55,16 @@ public class ClienteController {
         optionalClienteModel.get().setTell(clienteDTO.tell());
         optionalClienteModel.get().setEmail(clienteDTO.email());
         optionalClienteModel.get().setCep(clienteDTO.cep());
-        return ResponseEntity.status(HttpStatus.CREATED).body(optionalClienteModel.get());
+        return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.getClienteRepository().save(optionalClienteModel.get()));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deletarCliente (@PathVariable (value = "id") UUID id) {
+        Optional<ClienteModel> optionalClienteModel = clienteService.getClienteRepository().findById(id);
+        if(!optionalClienteModel.isPresent())
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not Found Venda");
+        clienteService.getClienteRepository().delete(optionalClienteModel.get());
+        return ResponseEntity.status(HttpStatus.OK).body("Client delete Success!!");
     }
 
 }
