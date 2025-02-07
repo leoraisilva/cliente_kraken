@@ -1,32 +1,5 @@
 version: '3.8'
-
 services:
-  # Serviço para o banco de dados PostgreSQL
-  db:
-    image: postgres:15
-    container_name: vendas-db
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: vendas_db
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - vendas-network
-
-  # Serviço para pgAdmin
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: admin
-    ports:
-      - "9000:80"
-    networks:
-      - vendas-network
 
   # Serviço para a aplicação Spring Boot
   app:
@@ -40,16 +13,10 @@ services:
       SPRING_DATASOURCE_PASSWORD: postgres
     ports:
       - "8080:8080"
-    depends_on:
-      - db
     networks:
-      - vendas-network
+      - java_vendas-network
 
-# Definindo redes e volumes
 networks:
-  vendas-network:
-    driver: bridge
+  java_vendas-network:
+    external: true
 
-volumes:
-  postgres_data:
-    driver: local
