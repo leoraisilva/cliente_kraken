@@ -14,9 +14,9 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - java_vendas-network
+      - kraken_vendas-network
 
 networks:
-  java_vendas-network:
+  kraken_vendas-network:
     external: true
 
