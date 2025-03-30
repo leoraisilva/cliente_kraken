@@ -1,0 +1,6 @@
+br\com\kraken\vendas\java\repository\ClienteRepository.class
+br\com\kraken\vendas\java\service\ClienteService.class
+br\com\kraken\vendas\ClienteApplication.class
+br\com\kraken\vendas\java\controller\ClienteController.class
+br\com\kraken\vendas\java\model\ClienteModel.class
+br\com\kraken\vendas\java\modelDTO\ClienteDTO.class
