@@ -1,14 +1,18 @@
 package br.com.kraken.vendas.java.model;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Table (name = "vendas")
-public class ClienteModel {
+public class ClienteModel implements UserDetails {
     @Id
     @GeneratedValue (strategy = GenerationType.UUID)
     private UUID idCliente;
@@ -26,8 +30,10 @@ public class ClienteModel {
     private String cep;
     @Column(name = "data_cadastro")
     private LocalDateTime dataCadastro;
+    @Column(name = "rules")
+    private int rules;
 
-    public ClienteModel(UUID idCliente, String usuario, String nome, String senha, String email, String tell, String cep, LocalDateTime dataCadastro) {
+    public ClienteModel(UUID idCliente, String usuario, String nome, String senha, String email, String tell, String cep, LocalDateTime dataCadastro, int rules)  {
         this.idCliente = idCliente;
         this.usuario = usuario;
         this.nome = nome;
@@ -36,7 +42,9 @@ public class ClienteModel {
         this.tell = tell;
         this.cep = cep;
         this.dataCadastro = dataCadastro;
+        this.rules = rules;
     }
+
     public ClienteModel () {}
 
     public UUID getIdCliente() {
@@ -101,5 +109,59 @@ public class ClienteModel {
 
     public void setDataCadastro(LocalDateTime dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+
+    public int getRules() {
+        return rules;
+    }
+
+    public void setRules(int rules) {
+        this.rules = rules;
+    }
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if(this.rules == 0) {
+            return List.of(
+                    new SimpleGrantedAuthority("ROLE_ADMIN"),
+                    new SimpleGrantedAuthority("ROLE_SALES"),
+                    new SimpleGrantedAuthority("ROLES_BUYER")
+            );
+        }
+        else if (this.rules == 1 ) {
+            return List.of(new SimpleGrantedAuthority("ROLES_BUYER"));
+        }
+        else  return List.of(new SimpleGrantedAuthority("ROLE_SALES"));
+    }
+
+    @Override
+    public String getPassword() {
+        return this.senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.usuario;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
