@@ -2,8 +2,7 @@ package br.com.kraken.vendas.java.model;
 
 public enum Rules {
     ADMIN ("admin"),
-    SALES ("sales"),
-    BUYER ("buyer");
+    USER ("user");
 
     private String rule;
     Rules (String rule){

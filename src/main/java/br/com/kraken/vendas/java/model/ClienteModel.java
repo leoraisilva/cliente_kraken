@@ -31,9 +31,9 @@ public class ClienteModel implements UserDetails {
     @Column(name = "data_cadastro")
     private LocalDateTime dataCadastro;
     @Column(name = "rules")
-    private int rules;
+    private Rules rules;
 
-    public ClienteModel(UUID idCliente, String usuario, String nome, String senha, String email, String tell, String cep, LocalDateTime dataCadastro, int rules)  {
+    public ClienteModel(UUID idCliente, String usuario, String nome, String senha, String email, String tell, String cep, LocalDateTime dataCadastro, Rules rules)  {
         this.idCliente = idCliente;
         this.usuario = usuario;
         this.nome = nome;
@@ -111,28 +111,22 @@ public class ClienteModel implements UserDetails {
         this.dataCadastro = dataCadastro;
     }
 
-    public int getRules() {
+    public Rules getRules() {
         return rules;
     }
 
-    public void setRules(int rules) {
+    public void setRules(Rules rules) {
         this.rules = rules;
     }
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.rules == 0) {
+        if(this.rules.equals(Rules.ADMIN)) {
             return List.of(
-                    new SimpleGrantedAuthority("ROLE_ADMIN"),
-                    new SimpleGrantedAuthority("ROLE_SALES"),
-                    new SimpleGrantedAuthority("ROLES_BUYER")
+                    new SimpleGrantedAuthority("ROLE_ADMIN")
             );
         }
-        else if (this.rules == 1 ) {
-            return List.of(new SimpleGrantedAuthority("ROLES_BUYER"));
-        }
-        else  return List.of(new SimpleGrantedAuthority("ROLE_SALES"));
+        else  return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override

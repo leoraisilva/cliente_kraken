@@ -29,9 +29,9 @@ public class ClientSecurity {
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
                         .requestMatchers(HttpMethod.POST, "/cliente/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/cliente").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/cliente").hasAnyRole("ADMIN", "SALES", "BUYER")
-                        .requestMatchers(HttpMethod.PUT, "/cliente/{id}").hasAnyRole("ADMIN", "SALES", "BUYER")
-                        .requestMatchers(HttpMethod.DELETE, "/cliente/{id}").hasAnyRole("ADMIN", "SALES", "BUYER")
+                        .requestMatchers(HttpMethod.GET, "/cliente").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.PUT, "/cliente/{id}").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.DELETE, "/cliente/{id}").hasAnyRole("ADMIN", "USER")
                         .anyRequest()
                         .authenticated()
                 )
