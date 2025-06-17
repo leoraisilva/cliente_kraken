@@ -1,0 +1,17 @@
+/home/summ17/Documentos/projeto/kraken/cliente_kraken/src/main/java/br/com/kraken/vendas/ClienteApplication.java
+/home/summ17/Documentos/projeto/kraken/cliente_kraken/src/main/java/br/com/kraken/vendas/java/configs/securities/ClientSecurity.java
+/home/summ17/Documentos/projeto/kraken/cliente_kraken/src/main/java/br/com/kraken/vendas/java/configs/securities/SecurityFilter.java
+/home/summ17/Documentos/projeto/kraken/cliente_kraken/src/main/java/br/com/kraken/vendas/java/configs/securities/TokenServices.java
+/home/summ17/Documentos/projeto/kraken/cliente_kraken/src/main/java/br/com/kraken/vendas/java/controller/ClienteController.java
+/home/summ17/Documentos/projeto/kraken/cliente_kraken/src/main/java/br/com/kraken/vendas/java/model/AcessoModel.java
+/home/summ17/Documentos/projeto/kraken/cliente_kraken/src/main/java/br/com/kraken/vendas/java/model/ClienteModel.java
+/home/summ17/Documentos/projeto/kraken/cliente_kraken/src/main/java/br/com/kraken/vendas/java/model/Rules.java
+/home/summ17/Documentos/projeto/kraken/cliente_kraken/src/main/java/br/com/kraken/vendas/java/modelDTO/AcessoDTO.java
+/home/summ17/Documentos/projeto/kraken/cliente_kraken/src/main/java/br/com/kraken/vendas/java/modelDTO/ClienteDTO.java
+/home/summ17/Documentos/projeto/kraken/cliente_kraken/src/main/java/br/com/kraken/vendas/java/modelDTO/GenerationToken.java
+/home/summ17/Documentos/projeto/kraken/cliente_kraken/src/main/java/br/com/kraken/vendas/java/modelDTO/LoginRequest.java
+/home/summ17/Documentos/projeto/kraken/cliente_kraken/src/main/java/br/com/kraken/vendas/java/repository/interfaces/iAcessoRepository.java
+/home/summ17/Documentos/projeto/kraken/cliente_kraken/src/main/java/br/com/kraken/vendas/java/repository/interfaces/iClienteRepository.java
+/home/summ17/Documentos/projeto/kraken/cliente_kraken/src/main/java/br/com/kraken/vendas/java/service/AcessoService.java
+/home/summ17/Documentos/projeto/kraken/cliente_kraken/src/main/java/br/com/kraken/vendas/java/service/ClienteService.java
+/home/summ17/Documentos/projeto/kraken/cliente_kraken/src/main/java/br/com/kraken/vendas/java/service/interfaces/iClienteService.java
