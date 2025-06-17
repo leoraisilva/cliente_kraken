@@ -2,10 +2,13 @@ package br.com.kraken.vendas.java.controller;
 
 import br.com.kraken.vendas.java.configs.securities.ClientSecurity;
 import br.com.kraken.vendas.java.configs.securities.TokenServices;
+import br.com.kraken.vendas.java.model.AcessoModel;
 import br.com.kraken.vendas.java.model.ClienteModel;
+import br.com.kraken.vendas.java.modelDTO.AcessoDTO;
 import br.com.kraken.vendas.java.modelDTO.GenerationToken;
 import br.com.kraken.vendas.java.modelDTO.ClienteDTO;
 import br.com.kraken.vendas.java.modelDTO.LoginRequest;
+import br.com.kraken.vendas.java.service.AcessoService;
 import br.com.kraken.vendas.java.service.interfaces.iClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -27,13 +30,23 @@ public class ClienteController {
     private final TokenServices token;
     private final iClienteService service;
     private final ClientSecurity security;
+    private final AcessoService acessoService;
     private final AuthenticationManager authenticationManager;
 
-    public ClienteController(iClienteService iclienteService, AuthenticationManager authenticationManager, ClientSecurity security, TokenServices token) {
+    public ClienteController(AcessoService acessoService, iClienteService iclienteService, AuthenticationManager authenticationManager, ClientSecurity security, TokenServices token) {
         this.service = iclienteService;
         this.authenticationManager = authenticationManager;
         this.security = security;
         this.token = token;
+        this.acessoService = acessoService;
+    }
+
+    @PostMapping("/auth/registry")
+    public ResponseEntity<Object> cadastroCliente (@RequestBody @Valid AcessoDTO acessoDTO) {
+        var acessoModel = new AcessoModel();
+        BeanUtils.copyProperties(acessoDTO, acessoModel);
+        acessoModel.setDataCadastro(LocalDateTime.now(ZoneId.of("America/Sao_Paulo")));
+        return ResponseEntity.status(HttpStatus.CREATED).body(acessoService.getRepository().save(acessoModel));
     }
 
     @PostMapping("/auth/login")
