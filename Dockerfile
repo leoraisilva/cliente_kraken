@@ -14,7 +14,7 @@ RUN mvn dependency:go-offline
 COPY src /app/src
 
 # Compilar o projeto e gerar o JAR
-RUN mvn clean package -DskipTests
+RUN mvn clean package
 
 # Etapa 2: Construção da imagem para execução da aplicação
 FROM openjdk:17-jdk-slim
